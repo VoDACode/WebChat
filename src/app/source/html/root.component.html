@@ -1,0 +1,24 @@
+<div id="contentBox">
+  <div id="dialogList">
+    <div id="searchBox">
+      <input type="text" id="searchInput">
+    </div>
+    <div id="contactViewBox">
+      <div class="contactItem" *ngFor="let obj of contactList.getList()" id="contat_{{obj.Id}}" (click)="obj.clickInContact()">
+        <div>
+          <img class="contactItem_TitleImg" [src]=obj.TitleImg>
+        </div>
+        <div class="contactItem_Detail_Box">
+          <div>
+            <span class="contactItem_titleName">{{obj.TitleName}}</span>
+          </div>
+          <div>
+            <span class="contactItem_status">{{obj.Status}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-message-region></app-message-region>
+</div>
+<app-menu-source></app-menu-source>

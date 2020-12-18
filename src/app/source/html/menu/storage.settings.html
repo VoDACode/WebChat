@@ -1,0 +1,261 @@
+<div class="Modal_bg stSettings" id="storageSettings" [style.display]="(IsVisible)?'block':'none'">
+  <div class="Modal_main_conten_box" id="storageSettingsBox">
+    <div class="menu">
+      <div class="menuItemBox">
+        <span>Settings storage</span>
+        <div (click)="selectMenuItem(0)" [style.background-color]="(menuTemplateArr[0])?selectColor:''" class="item">
+          <span>Main</span>
+        </div>
+        <div (click)="selectMenuItem(1)" [style.background-color]="(menuTemplateArr[1])?selectColor:''" class="item">
+          <span>Permissions templates</span>
+        </div>
+        <div (click)="selectMenuItem(2)" [style.background-color]="(menuTemplateArr[2])?selectColor:''" class="item">
+          <span>Join links</span>
+        </div>
+        <div (click)="selectMenuItem(3)" [style.background-color]="(menuTemplateArr[3])?selectColor:''" class="item">
+          <span>Bans</span>
+        </div>
+        <div (click)="selectMenuItem(4)" [style.background-color]="(menuTemplateArr[4])?selectColor:''" class="item">
+          <span>Log</span>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <span class="Modal_close stSettings" onclick="$('#storageSettings').hide()">X</span>
+      <div [style.display]="(menuTemplateArr[0])?'block':'none'" class="menuTemplate" style="display: block;">
+        <div class="main">
+          <div class="ava">
+            <button>
+              <img [src]="storage.TitleImg">
+            </button>
+          </div>
+          <div class="content">
+            <div>
+              <span>Name:</span>
+              <input type="text" [value]="storage.TitleName">
+            </div>
+            <div>
+              <span>Private:</span>
+              <label class="switch">
+                <input type="checkbox" [value]="storage.IsPrivate">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div>
+              <span>Universal name</span>
+              <input type="text" [value]="storage.UniversalName">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [style.display]="(menuTemplateArr[1])?'block':'none'" class="menuTemplate">
+        <div class="PermissionsTemplates">
+          <div class="list" (>
+            <div class="item" *ngFor="let obj of permissionsTemplateList;" (click)="selectPermissionsTemplateItem(obj)" [style.background-color]="(obj.IsSelected)?selectColor:''">
+              <span>{{obj.Template.Name}}</span>
+            </div>
+          </div>
+          <div class="viewBox">
+            <div>
+              <label>Name</label>
+              <input type="text" id="viewSetPermissionsTemplatesName">
+            </div>
+            <div>
+              <h3>Roles</h3>
+              <div>
+                <span>Admin:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div>
+                <span>Delete permissions templates:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div>
+                <span>Create permissions templates:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+            <div>
+              <h3>Users</h3>
+              <div>
+                <span>Mute user:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div>
+                <span>Kick user:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div>
+                <span>Ban user:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+            <div>
+              <h3>Messages</h3>
+              <div>
+                <span>Send message:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div>
+                <span>Send file:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div>
+                <span>Delete message:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+            <div>
+              <h3>Storage</h3>
+              <div>
+                <span>Rename storage:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div>
+                <span>Edit title image:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div>
+                <span>Create new join link:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div>
+                <span>Copy join link:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div>
+                <span>Read log:</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [style.display]="(menuTemplateArr[2])?'block':'none'" class="menuTemplate">
+        <h1>Join links</h1>
+        <div class="JoinLinks">
+          <div class="list">
+            <div class="item">
+              <div class="user">
+                <div class="avatar">
+                  <img src="assets/imgs/default-user-avatar-96.png">
+                </div>
+                <div class="name">
+                  <span><a href="#">Name</a></span>
+                </div>
+              </div>
+              <div class="link">
+                <span>https://chat.io/join/dfgjgh4554fgh</span>
+              </div>
+              <div class="time">
+                <span>11.12.2020</span>
+              </div>
+              <div class="settings">
+                <button title="Delete">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [style.display]="(menuTemplateArr[3])?'block':'none'" class="menuTemplate">
+        <h1>Bans</h1>
+        <div class="Bans">
+          <div class="list">
+            <div class="item">
+              <div class="user">
+                <div class="avatar">
+                  <img src="assets/imgs/default-user-avatar-96.png">
+                </div>
+                <div class="name">
+                  <span><a href="#">Name</a></span>
+                </div>
+              </div>
+              <div class="reason">
+                <span>Hentai</span>
+              </div>
+              <div class="time">
+                <div class="start">
+                  <span>14:55 11.12.2020</span>
+                </div>
+                <div class="end">
+                  <span>14:55 12.12.2020</span>
+                </div>
+                <div class="duration">
+                  <span>1d</span>
+                </div>
+              </div>
+              <div class="settings">
+                <button>Unban</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [style.display]="(menuTemplateArr[4])?'block':'none'" class="menuTemplate">
+        <h1>Log</h1>
+        <div class="Log">
+          <div class="list">
+            <div class="item">
+              <div class="date">
+                <span>15:23 11.12.2020</span>
+              </div>
+              <div class="user">
+                <div class="avatar">
+                  <img src="assets/imgs/default-user-avatar-96.png">
+                </div>
+                <div class="name">
+                  <span><a href="#">Name</a></span>
+                </div>
+              </div>
+              <div class="ection">
+                <span>ection</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

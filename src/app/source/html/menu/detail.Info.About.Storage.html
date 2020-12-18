@@ -1,0 +1,50 @@
+<div class="Modal_bg detailInfoAboutStorage" id="detailedInfoAboutStorage" [style.display]="(IsVisible)?'block':'none'">
+  <div class="Modal_content">
+    <div class="Modal_top_panel">
+      <div>
+        <span class="Modal_title">{{storage.TitleName}}</span>
+      </div>
+      <div>
+        <span class="Modal_close detailInfoAboutStorage">X</span>
+      </div>
+    </div>
+    <div class="Modal_main_conten_box">
+      <div class="Modal_top_info">
+        <div class="Modal_img_box">
+          <img [src]="storage.TitleImg" id="StorageTitleImg">
+        </div>
+        <div class="Modal_info_box">
+          <div>
+            <span class="StorageTitleName">{{storage.TitleName}}</span>
+          </div>
+          <div>
+            <span class="StorageStatus">{{storage.Status}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="Modal_setting_panel">
+        <div id="Modal_swich_userList">
+          <span>User list</span>
+        </div>
+        <div id="Modal_swich_setting">
+          <span>Settings</span>
+        </div>
+      </div>
+      <div class="Modal_View_SelectIn_setting_panel">
+        <div id="ListUsers_inStorage">
+        </div>
+        <div id="SettingPanel">
+          <div>
+            <span>Export chat history</span>
+          </div>
+          <div>
+            <span>Leave</span>
+          </div>
+          <div>
+            <span id="buttonOpen_stSettings">Storage settings</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
