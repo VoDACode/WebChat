@@ -12,13 +12,13 @@ import {DetailInfoAboutStorageComponent} from './menu/detail.Info.About.Storage'
 import {StorageSttingsComponent} from './menu/storage.sttings.component';
 
 const appRoutes: Routes = [
-  { path: '**', component: AppRootComponent}
+  { path: '*', component: AppRootComponent}
 ];
 
 @NgModule({
   declarations: [
-    AppRootComponent, AppMessageRegionComponent, AppMenuComponent,
-    DetailInfoAboutStorageComponent, StorageSttingsComponent
+    AppRootComponent, AppMessageRegionComponent, AppMenuComponent, StorageSttingsComponent
+    , DetailInfoAboutStorageComponent
   ],
   imports: [
     BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)

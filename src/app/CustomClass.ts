@@ -5,7 +5,7 @@ export class UrlParameters{
   static initialize(l: Location): void{
     this.local = l;
   }
-  public static Get(url: string = location.href): object{
+  public static Get(url: string): any{
     const resultObj = {};
     const lastIndex = url.split('/')[url.split('/').length - 1];
     let parameters = '';
@@ -19,7 +19,7 @@ export class UrlParameters{
     });
     return (resultObj[0]) ? resultObj : {};
   }
-  public static Set(Parameters: object, url = location.href): void{
+  public static Set(Parameters: object, url: string): void{
     let newUrlParametersString = (Object.keys(Parameters).length > 0) ? '?' : '';
     // tslint:disable-next-line:forin
     for (const obj in Parameters){
@@ -29,8 +29,8 @@ export class UrlParameters{
     const path = url.split('?')[0].replace(`${location.protocol}//${location.host}`, '');
     this.local.go(path, newUrlParametersString);
   }
-  public static Add(Parameters: object, url = location.href): void{
-    const oldUrlParameters = this.Get();
+  public static Add(Parameters: object, url: string): void{
+    const oldUrlParameters = this.Get(url);
     const newUrlParameters = {};
     let resultString = '?';
     if (Object.keys(oldUrlParameters).length > 0) {

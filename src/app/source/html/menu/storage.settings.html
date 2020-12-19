@@ -50,15 +50,15 @@
       </div>
       <div [style.display]="(menuTemplateArr[1])?'block':'none'" class="menuTemplate">
         <div class="PermissionsTemplates">
-          <div class="list" (>
-            <div class="item" *ngFor="let obj of permissionsTemplateList;" (click)="selectPermissionsTemplateItem(obj)" [style.background-color]="(obj.IsSelected)?selectColor:''">
+          <div class="list">
+            <div class="item" *ngFor="let obj of permissionsTemplateList;let i = index" (click)="selectPermissionsTemplateItem(i)" [style.background-color]="(obj.IsSelected)?selectColor:''">
               <span>{{obj.Template.Name}}</span>
             </div>
           </div>
           <div class="viewBox">
             <div>
               <label>Name</label>
-              <input type="text" id="viewSetPermissionsTemplatesName">
+              <input type="text" [(ngModel)]="getSelectPermissionsTemplateItem().Template.Name">
             </div>
             <div>
               <h3>Roles</h3>
@@ -72,14 +72,14 @@
               <div>
                 <span>Delete permissions templates:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsDeleteRoles">
                   <span class="slider round"></span>
                 </label>
               </div>
               <div>
                 <span>Create permissions templates:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsCreateRoles">
                   <span class="slider round"></span>
                 </label>
               </div>
@@ -89,21 +89,21 @@
               <div>
                 <span>Mute user:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsMuteUser">
                   <span class="slider round"></span>
                 </label>
               </div>
               <div>
                 <span>Kick user:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsKickUser">
                   <span class="slider round"></span>
                 </label>
               </div>
               <div>
                 <span>Ban user:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsBanUser">
                   <span class="slider round"></span>
                 </label>
               </div>
@@ -113,21 +113,21 @@
               <div>
                 <span>Send message:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsSendMessage">
                   <span class="slider round"></span>
                 </label>
               </div>
               <div>
                 <span>Send file:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsSendFiles">
                   <span class="slider round"></span>
                 </label>
               </div>
               <div>
                 <span>Delete message:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsDeleteMessages">
                   <span class="slider round"></span>
                 </label>
               </div>
@@ -137,35 +137,35 @@
               <div>
                 <span>Rename storage:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsRenameStorage">
                   <span class="slider round"></span>
                 </label>
               </div>
               <div>
                 <span>Edit title image:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsEditTitleImage">
                   <span class="slider round"></span>
                 </label>
               </div>
               <div>
                 <span>Create new join link:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsGenerateJoinURL">
                   <span class="slider round"></span>
                 </label>
               </div>
               <div>
                 <span>Copy join link:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsCopyJoinURL">
                   <span class="slider round"></span>
                 </label>
               </div>
               <div>
                 <span>Read log:</span>
                 <label class="switch">
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsReadLog">
                   <span class="slider round"></span>
                 </label>
               </div>
