@@ -177,23 +177,23 @@
         <h1>Join links</h1>
         <div class="JoinLinks">
           <div class="list">
-            <div class="item">
+            <div class="item" *ngFor="let obj of JoinLinks">
               <div class="user">
                 <div class="avatar">
-                  <img src="assets/imgs/default-user-avatar-96.png">
+                  <img [src]="obj.UserCreator.ImgUrl">
                 </div>
                 <div class="name">
-                  <span><a href="#">Name</a></span>
+                  <span><a href="#">{{obj.UserCreator.UserName}}</a></span>
                 </div>
               </div>
               <div class="link">
-                <span>https://chat.io/join/dfgjgh4554fgh</span>
+                <span>{{obj.URL}}</span>
               </div>
               <div class="time">
-                <span>11.12.2020</span>
+                <span>{{obj.CreateDate}}</span>
               </div>
               <div class="settings">
-                <button title="Delete">Delete</button>
+                <button title="Delete" (click)="obj.delete()">Delete</button>
               </div>
             </div>
           </div>
@@ -203,27 +203,27 @@
         <h1>Bans</h1>
         <div class="Bans">
           <div class="list">
-            <div class="item">
+            <div class="item" *ngFor="let obj of BanList">
               <div class="user">
                 <div class="avatar">
-                  <img src="assets/imgs/default-user-avatar-96.png">
+                  <img [src]="obj.User.ImgUrl">
                 </div>
                 <div class="name">
-                  <span><a href="#">Name</a></span>
+                  <span><a href="#">{{obj.User.UserName}}</a></span>
                 </div>
               </div>
               <div class="reason">
-                <span>Hentai</span>
+                <span>{{obj.Reason}}</span>
               </div>
               <div class="time">
                 <div class="start">
-                  <span>14:55 11.12.2020</span>
+                  <span>{{obj.FormatDate(obj.StartDate)}}</span>
                 </div>
                 <div class="end">
-                  <span>14:55 12.12.2020</span>
+                  <span>{{obj.FormatDate(obj.EndDate)}}</span>
                 </div>
                 <div class="duration">
-                  <span>1d</span>
+                  <span>{{obj.Duration()}}</span>
                 </div>
               </div>
               <div class="settings">
@@ -237,20 +237,20 @@
         <h1>Log</h1>
         <div class="Log">
           <div class="list">
-            <div class="item">
+            <div class="item" *ngFor="let obj of LogList">
               <div class="date">
-                <span>15:23 11.12.2020</span>
+                <span>{{obj.FormatDate(obj.CareateDate)}}</span>
               </div>
               <div class="user">
                 <div class="avatar">
-                  <img src="assets/imgs/default-user-avatar-96.png">
+                  <img [src]="obj.User.ImgUrl">
                 </div>
                 <div class="name">
-                  <span><a href="#">Name</a></span>
+                  <span><a href="#">{{obj.User.UserName}}</a></span>
                 </div>
               </div>
               <div class="ection">
-                <span>ection</span>
+                <span>{{obj.Content}}</span>
               </div>
             </div>
           </div>

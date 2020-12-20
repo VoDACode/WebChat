@@ -58,3 +58,18 @@ export class UrlParameters{
     this.local.go(path, resultString);
   }
 }
+
+export class DateAddon{
+  static Format(obj: Date, template: string = 'YYYY.MM.DD hh:mm:ss'): string{
+    const res = template.replace('YYYY', obj.getFullYear().toString())
+    .replace('MM', this.addNull(obj.getMonth() + 1))
+    .replace('DD', this.addNull(obj.getDate()))
+    .replace('hh', this.addNull(obj.getHours()))
+    .replace('mm', this.addNull(obj.getMinutes()))
+    .replace('ss', this.addNull(obj.getSeconds()));
+    return res;
+  }
+  private static addNull(num: number): string{
+    return (num > 9) ? num.toString() : '0' + num;
+  }
+}
