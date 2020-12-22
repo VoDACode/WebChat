@@ -1,26 +1,24 @@
 import {EventEmitter} from '@angular/core';
 import {ChatModel} from '../models/ChatModel';
-import {MessageModel, MessageType} from '../models/MessageModel';
-import {ContactList} from './ContactList';
-import {ContactModel} from '../models/ContactModel';
+import {MessageModel} from '../models/MessageModel';
 import {Location} from '@angular/common';
-import {MessageList} from './MessageList';
+import {UserModel} from '../models/UserModel';
 
 export class ChatHub{
   private static location: Location;
-  private static chatList: Array<ChatModel> = new Array<ChatModel>();
+  static chatList: Array<ChatModel> = new Array<ChatModel>();
   private static client: any;
-  static selectChat: ChatModel;
+  static User: UserModel = new UserModel();
+  static selectChat: ChatModel = new ChatModel();
   static connectionExists: boolean;
   static isRegistered: boolean;
-  static onAddMessage: EventEmitter<void>;
-  static onAddContactList: EventEmitter<void>;
-  static onChangeUsersList: EventEmitter<void>;
-  static onConnected: EventEmitter<void>;
-  static onEditMessage: EventEmitter<void>;
-  static onRegistered: EventEmitter<void>;
-  private static server: any;
-  private static userId: string;
+  static onAddMessage: EventEmitter<void> = new EventEmitter<void>();
+  static onAddContactList: EventEmitter<void> = new EventEmitter<void>();
+  static onChangeUsersList: EventEmitter<void> = new EventEmitter<void>();
+  static onConnected: EventEmitter<void> = new EventEmitter<void>();
+  static onEditMessage: EventEmitter<void> = new EventEmitter<void>();
+  static onRegistered: EventEmitter<void> = new EventEmitter<void>();
+  static onSelectContact: EventEmitter<void> = new EventEmitter<void>();
 
   public static initialize(local: Location): void{
     this.location = local;
@@ -42,5 +40,6 @@ export class ChatHub{
   }
 
   static sendMessage(message: MessageModel): void {
+    this.selectChat.MessageList.push(message);
   }
 }

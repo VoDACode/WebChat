@@ -10,6 +10,8 @@ import {ChatHub} from './services/app.service.signalR';
 import {AppMenuComponent} from './app.menu.component';
 import {DetailInfoAboutStorageComponent} from './menu/detail.Info.About.Storage';
 import {StorageSttingsComponent} from './menu/storage.sttings.component';
+import {CreateStorageMenuComponent} from './menu/create.storage.menu.component';
+import {SwitchComponent} from './switch.component';
 
 const appRoutes: Routes = [
   { path: '*', component: AppRootComponent}
@@ -18,7 +20,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppRootComponent, AppMessageRegionComponent, AppMenuComponent, StorageSttingsComponent
-    , DetailInfoAboutStorageComponent
+    , DetailInfoAboutStorageComponent, CreateStorageMenuComponent, SwitchComponent
   ],
   imports: [
     BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)

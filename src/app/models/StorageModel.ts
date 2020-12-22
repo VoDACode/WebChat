@@ -4,10 +4,10 @@ export enum StorageType {
 export class StorageModel{
   Id: string;
   TitleImg = 'assets/imgs/default-storage-icon.png';
-  TitleName: string;
-  Status: string;
+  TitleName = '';
+  Status = '';
   IsPrivate: boolean;
-  UniversalName: string;
+  UniversalName = '';
   CreateDate: string;
   Type: StorageType;
 }

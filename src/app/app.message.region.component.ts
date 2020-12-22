@@ -3,6 +3,7 @@ import {MessageModel, MessageType} from './models/MessageModel';
 import {Location} from '@angular/common';
 import {MessageList} from './services/MessageList';
 import {ChatHub} from './services/app.service.signalR';
+import {ChatModel} from './models/ChatModel';
 
 @Component({
   selector: `app-message-region`,
@@ -10,9 +11,6 @@ import {ChatHub} from './services/app.service.signalR';
 })
 
 export class AppMessageRegionComponent {
-  // MessageBox
-  MessageList: MessageList = new MessageList();
-  // sendForm
   IsVisible = true;
   TextContent = '';
   SelectFile: any;
@@ -27,13 +25,13 @@ export class AppMessageRegionComponent {
     const tmp = new MessageModel();
     tmp.TextContent = this.TextContent;
     // DO TO
-    //#region
     tmp.Type = MessageType.Text;
-    tmp.Sender.UserName = 'VoDA';
+    tmp.Sender = ChatHub.User;
     tmp.SendDate = new Date().toDateString();
-    //#endregion
-    this.MessageList.add(tmp);
+    ChatHub.sendMessage(tmp);
     this.TextContent = '';
-    console.log(this.MessageList);
+  }
+  getHubSelectChat(): ChatModel{
+    return ChatHub.selectChat;
   }
 }

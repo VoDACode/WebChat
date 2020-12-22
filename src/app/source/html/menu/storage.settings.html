@@ -26,24 +26,23 @@
         <div class="main">
           <div class="ava">
             <button>
-              <img [src]="storage.TitleImg">
+              <img [src]="getSelectChat().Storage.TitleImg">
             </button>
           </div>
           <div class="content">
             <div>
               <span>Name:</span>
-              <input type="text" [value]="storage.TitleName">
+              <input type="text" [value]="getSelectChat().Storage.TitleName">
             </div>
             <div>
-              <span>Private:</span>
-              <label class="switch">
-                <input type="checkbox" [value]="storage.IsPrivate">
-                <span class="slider round"></span>
-              </label>
+              <app-switch (onChanged)="setPrivate($event)"
+                          [Status]="getSelectChat().Storage.IsPrivate"
+                          [valueName]="'IsPrivate'" [Lable]="'Private:'">
+              </app-switch>
             </div>
             <div>
               <span>Universal name</span>
-              <input type="text" [value]="storage.UniversalName">
+              <input type="text" [value]="getSelectChat().Storage.UniversalName">
             </div>
           </div>
         </div>
@@ -51,7 +50,7 @@
       <div [style.display]="(menuTemplateArr[1])?'block':'none'" class="menuTemplate">
         <div class="PermissionsTemplates">
           <div class="list">
-            <div class="item" *ngFor="let obj of permissionsTemplateList;let i = index" (click)="selectPermissionsTemplateItem(i)" [style.background-color]="(obj.IsSelected)?selectColor:''">
+            <div class="item" *ngFor="let obj of getSelectChat().PermissionsTemplateList;let i = index" (click)="selectPermissionsTemplateItem(i)" [style.background-color]="(obj.IsSelected)?selectColor:''">
               <span>{{obj.Template.Name}}</span>
             </div>
           </div>
@@ -63,111 +62,91 @@
             <div>
               <h3>Roles</h3>
               <div>
-                <span>Admin:</span>
-                <label class="switch">
-                  <input type="checkbox">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsDeleteRoles"
+                            [valueName]="'IsDeleteRoles'" [Lable]="'Delete permissions templates:'">
+                </app-switch>
               </div>
               <div>
-                <span>Delete permissions templates:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsDeleteRoles">
-                  <span class="slider round"></span>
-                </label>
-              </div>
-              <div>
-                <span>Create permissions templates:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsCreateRoles">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsCreateRoles"
+                            [valueName]="'IsCreateRoles'" [Lable]="'Create permissions templates:'">
+                </app-switch>
               </div>
             </div>
             <div>
               <h3>Users</h3>
               <div>
-                <span>Mute user:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsMuteUser">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsMuteUser"
+                            [valueName]="'IsMuteUser'" [Lable]="'Mute user:'">
+                </app-switch>
               </div>
               <div>
-                <span>Kick user:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsKickUser">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsKickUser"
+                            [valueName]="'IsKickUser'" [Lable]="'Kick user:'">
+                </app-switch>
               </div>
               <div>
-                <span>Ban user:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsBanUser">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsBanUser"
+                            [valueName]="'IsBanUser'" [Lable]="'Ban user:'">
+                </app-switch>
               </div>
             </div>
             <div>
               <h3>Messages</h3>
               <div>
-                <span>Send message:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsSendMessage">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsSendMessage"
+                            [valueName]="'IsSendMessage'" [Lable]="'Send message:'">
+                </app-switch>
               </div>
               <div>
-                <span>Send file:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsSendFiles">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsSendFiles"
+                            [valueName]="'IsSendFiles'" [Lable]="'Send file:'">
+                </app-switch>
               </div>
               <div>
-                <span>Delete message:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsDeleteMessages">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsDeleteMessages"
+                            [valueName]="'IsDeleteMessages'" [Lable]="'Delete message:'">
+                </app-switch>
               </div>
             </div>
             <div>
               <h3>Storage</h3>
               <div>
-                <span>Rename storage:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsRenameStorage">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsRenameStorage"
+                            [valueName]="'IsRenameStorage'" [Lable]="'Rename storage:'">
+                </app-switch>
               </div>
               <div>
-                <span>Edit title image:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsEditTitleImage">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsEditTitleImage"
+                            [valueName]="'IsEditTitleImage'" [Lable]="'Edit title image:'">
+                </app-switch>
               </div>
               <div>
-                <span>Create new join link:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsGenerateJoinURL">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsGenerateJoinURL"
+                            [valueName]="'IsGenerateJoinURL'" [Lable]="'Create new join link:'">
+                </app-switch>
               </div>
               <div>
-                <span>Copy join link:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsCopyJoinURL">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsCopyJoinURL"
+                            [valueName]="'IsCopyJoinURL'" [Lable]="'Copy join link:'">
+                </app-switch>
               </div>
               <div>
-                <span>Read log:</span>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="getSelectPermissionsTemplateItem().Template.IsReadLog">
-                  <span class="slider round"></span>
-                </label>
+                <app-switch (onChanged)="setPermissionParam($event)"
+                            [Status]="getSelectPermissionsTemplateItem().Template.IsReadLog"
+                            [valueName]="'IsReadLog'" [Lable]="'Read log:'">
+                </app-switch>
               </div>
             </div>
           </div>
@@ -177,7 +156,7 @@
         <h1>Join links</h1>
         <div class="JoinLinks">
           <div class="list">
-            <div class="item" *ngFor="let obj of JoinLinks">
+            <div class="item" *ngFor="let obj of getSelectChat().JoinLinks">
               <div class="user">
                 <div class="avatar">
                   <img [src]="obj.UserCreator.ImgUrl">
@@ -203,7 +182,7 @@
         <h1>Bans</h1>
         <div class="Bans">
           <div class="list">
-            <div class="item" *ngFor="let obj of BanList">
+            <div class="item" *ngFor="let obj of getSelectChat().BanList">
               <div class="user">
                 <div class="avatar">
                   <img [src]="obj.User.ImgUrl">
@@ -237,7 +216,7 @@
         <h1>Log</h1>
         <div class="Log">
           <div class="list">
-            <div class="item" *ngFor="let obj of LogList">
+            <div class="item" *ngFor="let obj of getSelectChat().LogList">
               <div class="date">
                 <span>{{obj.FormatDate(obj.CareateDate)}}</span>
               </div>

@@ -1,10 +1,7 @@
-import {Location} from '@angular/common';
 import {StorageModel, StorageType} from './StorageModel';
+import {ChatHub} from '../services/app.service.signalR';
 
 export class ContactModel implements StorageModel{
-
-  constructor(private location: Location) { }
-
   CreateDate: string;
   Id: string;
   IsPrivate: boolean;
@@ -14,6 +11,7 @@ export class ContactModel implements StorageModel{
   Type: StorageType;
   UniversalName: string;
   clickInContact(): void{
-    this.location.go(`/?StorageUID=${this.Id}`);
+    ChatHub.selectChat = ChatHub.chatList.find(obj => obj.Storage.Id === this.Id);
+    ChatHub.onSelectContact.emit();
   }
 }

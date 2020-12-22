@@ -1,8 +1,10 @@
 import {Component, Input} from '@angular/core';
-import {StorageModel} from '../models/StorageModel';
 import {PermissionsTemplateModel} from '../models/PermissionsTemplateModel';
 import {UserModel} from '../models/UserModel';
 import {DateAddon} from '../CustomClass';
+import {ChatModel} from '../models/ChatModel';
+import {ChatHub} from '../services/app.service.signalR';
+import {SwitchComponent, SwitchType} from '../switch.component';
 
 @Component({
   selector: 'app-storage-settings',
@@ -14,23 +16,14 @@ export class StorageSttingsComponent {
   selectColor = 'rgba(114, 171, 255, 0.5)';
   //
   menuTemplateArr: Array<boolean> = new Array<boolean>();
-  permissionsTemplateList: Array<ModelPermissionsTemplate> = new Array<ModelPermissionsTemplate>();
-  //
-  JoinLinks: Array<ModelJoinLink> = new Array<ModelJoinLink>();
-  //
-  BanList: Array<ModelBad> = new Array<ModelBad>();
-  //
-  LogList: Array<ModelLog> = new Array<ModelLog>();
-  //
-  storage: StorageModel = new StorageModel();
   constructor() {
     this.test();
   }
 
   private test(): void{
-    this.storage.TitleImg = 'assets/imgs/default-storage-icon.png';
-    this.storage.TitleName = 'StorageName';
-    this.storage.Status = 'Status';
+    this.getSelectChat().Storage.TitleImg = 'assets/imgs/default-storage-icon.png';
+    this.getSelectChat().Storage.TitleName = 'StorageName';
+    this.getSelectChat().Storage.Status = 'Status';
     this.menuTemplateArr.length = 5;
     this.menuTemplateArr[0] = true;
     for (let i = 0; i < 5; i++) {
@@ -40,7 +33,7 @@ export class StorageSttingsComponent {
       };
       tmp.IsSelected = (i === 0);
       tmp.Template.Name = 'Permission' + i;
-      this.permissionsTemplateList.push(tmp);
+      this.getSelectChat().PermissionsTemplateList.push(tmp);
     }
     //
     for (let i = 0; i < 20; i++){
@@ -48,7 +41,7 @@ export class StorageSttingsComponent {
       tmp.URL = location.hash + '/join/sUID/num' + i;
       tmp.UserCreator.UserName = 'UserName' + i;
       tmp.CreateDate = Date();
-      this.JoinLinks.push(tmp);
+      this.getSelectChat().JoinLinks.push(tmp);
     }
     //
     for (let i = 0; i < 3; i++){
@@ -57,7 +50,7 @@ export class StorageSttingsComponent {
       tmp.User.UserName = 'UserName' + i;
       tmp.EndDate = new Date('2020-12-20 23:00');
       tmp.StartDate = new Date('2020-12-19 23:00');
-      this.BanList.push(tmp);
+      this.getSelectChat().BanList.push(tmp);
     }
     //
     for (let i = 0; i < 5; i++){
@@ -67,7 +60,7 @@ export class StorageSttingsComponent {
       const date = new Date();
       date.setDate(date.getDate() + i);
       tmp.CareateDate = date;
-      this.LogList.push(tmp);
+      this.getSelectChat().LogList.push(tmp);
     }
   }
 
@@ -79,16 +72,26 @@ export class StorageSttingsComponent {
   }
 
   selectPermissionsTemplateItem(selectedItem: number): void{
-    for (let i = 0; i < this.permissionsTemplateList.length; i++) {
+    for (let i = 0; i < this.getSelectChat().PermissionsTemplateList.length; i++) {
       if (i === selectedItem){
-        this.permissionsTemplateList[i].IsSelected = true;
+        this.getSelectChat().PermissionsTemplateList[i].IsSelected = true;
       }else {
-        this.permissionsTemplateList[i].IsSelected = false;
+        this.getSelectChat().PermissionsTemplateList[i].IsSelected = false;
       }
     }
   }
   getSelectPermissionsTemplateItem(): ModelPermissionsTemplate{
-    return this.permissionsTemplateList.find(obj => obj.IsSelected);
+    return this.getSelectChat().PermissionsTemplateList.find(obj => obj.IsSelected);
+  }
+  getSelectChat(): ChatModel{
+    return ChatHub.selectChat;
+  }
+  setPermissionParam(obj: any): void{
+    this.getSelectPermissionsTemplateItem().Template[obj.parameter] = obj.val;
+  }
+  setPrivate(obj: any): void{
+    this.getSelectChat().Storage[obj.parameter] = obj.val;
+    console.log(this.getSelectChat().Storage.IsPrivate);
   }
 }
 export class ModelPermissionsTemplate{

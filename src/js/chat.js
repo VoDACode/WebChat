@@ -71,6 +71,14 @@ $(function(){
         $("#detailedInfoAboutStorage").show();
     });
 
+    $("#openCreateMenu").bind("click", function (){
+        $("#createStorageMenu").show();
+    });
+
+    $("#createStorageTitleImg").bind("click", function (){
+      $("#openDialogWindowForTitleImg").click();
+    })
+
     $("#buttonOpen_stSettings").bind("click", function(e){
         $("#storageSettings").show();
     });
@@ -112,78 +120,4 @@ function addUserToList(User){
             </div>
         </div>`;
     $(obj).appendTo("#ListUsers_inStorage");
-}
-
-function addJoinLink(User, URLObj){
-    let obj =   `<div class="item" id="JoinLink_${URLObj.Id}">
-                    <div class="user">
-                        <div class="avatar">
-                            <img src="source/imgs/default-user-avatar-96.png">
-                        </div>
-                        <div class="name">
-                            <span><a href="#">${User.UserName}</a></span>
-                        </div>
-                    </div>
-                    <div class="link">
-                        <span>${URLObj.URL}</span>
-                    </div>
-                    <div class="time">
-                        <span>${URLObj.CreateDate}</span>
-                    </div>
-                    <div class="settings">
-                        <button title="Delete">Delete</button>
-                    </div>
-                </div>`;
-    $(obj).appendTo("#storageSettings .Modal_main_conten_box > .content > .menuTemplate > .JoinLincks > .list");
-}
-
-function addBanUserInList(BanUser){
-    let obj =   `<div class="item" id="$Ban_{BanUser.Id}">
-                    <div class="user">
-                        <div class="avatar">
-                            <img src="source/imgs/default-user-avatar-96.png">
-                        </div>
-                        <div class="name">
-                            <span><a href="#">${BanUser.User.UserName}</a></span>
-                        </div>
-                    </div>
-                    <div class="reason">
-                        <span>${BanUser.Description}</span>
-                    </div>
-                    <div class="time">
-                        <div class="start">
-                            <span>${BanUser.StartBan}</span>
-                        </div>
-                        <div class="end">
-                            <span>${BanUser.EndBan}</span>
-                        </div>
-                        <div class="duration">
-                            <span>${BanUser.Duration}</span>
-                        </div>
-                    </div>
-                    <div class="settings">
-                        <button>Unban</button>
-                    </div>
-                </div>`;
-    $(obj).appendTo("#storageSettings .Modal_main_conten_box > .content > .menuTemplate > .Bans > .list")
-}
-
-function addLog(log){
-    let obj =   `<div class="item" id="Log_${log.Id}">
-                    <div class="date">
-                        <span>${log.CreateDate}</span>
-                    </div>
-                    <div class="user">
-                        <div class="avatar">
-                            <img src="source/imgs/default-user-avatar-96.png">
-                        </div>
-                        <div class="name">
-                            <span><a href="#">${log.User.UserName}</a></span>
-                        </div>
-                    </div>
-                    <div class="ection">
-                        <span>${log.Content}</span>
-                    </div>
-                </div>`;
-    $(obj).appendTo("#storageSettings .Modal_main_conten_box > .content > .menuTemplate > .Log > .list");
 }

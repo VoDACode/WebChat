@@ -371,3 +371,74 @@
     grid-row: 2;
     word-wrap: anywhere;
 }
+
+/*Create storage menu*/
+#createStorageMenuBox{
+  display: grid;
+  grid-template-rows: 25px auto;
+  height: 35%;
+  width: 30%;
+  left: 35%;
+}
+#createStorageMenuBox > .close{
+  position: relative;
+}
+#createStorageMenuBox > .close span{
+  position: absolute;
+  right: 5px;
+  font-size: x-large;
+}
+#createStorageMenuBox > .content{
+  padding-bottom: 3%;
+}
+#createStorageMenuBox > .content > .page{
+  width: 90%;
+  height: 90%;
+  margin: 5%;
+  border: 2px solid black;
+}
+#createStorageMenuBox > .content > .page > .type{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100%;
+}
+#createStorageMenuBox > .content > .page > .type div{
+  border: 2px solid #2bff27;
+  width: 90%;
+  height: 90%;
+  margin: 5%;
+  cursor: pointer;
+}
+#createStorageMenuBox > .content > .page > .Title{
+  display: grid;
+  grid-template-rows: auto auto;
+}
+#createStorageMenuBox > .content > .page > .Title > .TitleViewInfo{
+  display: grid;
+  grid-template-columns: 100px auto;
+}
+#createStorageMenuBox > .content > .page > .Title > .TitleViewInfo > .ImgBox{
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  border: 2px solid #000000;
+}
+#createStorageMenuBox > .content > .page > .Title > .TitleViewInfo > .ImgBox:hover{
+  background-color: #ffffff;
+  opacity: 0.5;
+  cursor: pointer;
+}
+#createStorageMenuBox > .content > .page > .Title > .TitleViewInfo > .ImgBox img{
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+}
+#createStorageMenuBox > .content > .page > .Title > .TitleViewInfo > .NameBox{
+  display: grid;
+  grid-template-rows: auto auto auto;
+  margin-left: 10px;
+}
+#createStorageMenuBox > .content > .page > .Title > .TitleViewInfo > .NameBox input{
+  grid-row: 2;
+  padding: 1%;
+}

@@ -12,14 +12,14 @@
     <div class="Modal_main_conten_box">
       <div class="Modal_top_info">
         <div class="Modal_img_box">
-          <img [src]="storage.TitleImg" id="StorageTitleImg">
+          <img [src]="getSelectChat().Storage.TitleImg" id="StorageTitleImg">
         </div>
         <div class="Modal_info_box">
           <div>
-            <span class="StorageTitleName">{{storage.TitleName}}</span>
+            <span class="StorageTitleName">{{getSelectChat().Storage.TitleName}}</span>
           </div>
           <div>
-            <span class="StorageStatus">{{storage.Status}}</span>
+            <span class="StorageStatus">{{getSelectChat().Storage.Status}}</span>
           </div>
         </div>
       </div>

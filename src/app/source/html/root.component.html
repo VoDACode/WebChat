@@ -4,21 +4,25 @@
       <input type="text" id="searchInput">
     </div>
     <div id="contactViewBox">
-      <div class="contactItem" *ngFor="let obj of contactList.getList()" id="contat_{{obj.Id}}" (click)="obj.clickInContact()">
+      <div class="contactItem" *ngFor="let obj of getChatList()" id="contat_{{obj.Storage.Id}}" (click)="obj.Storage.clickInContact()">
         <div>
-          <img class="contactItem_TitleImg" [src]=obj.TitleImg>
+          <img class="contactItem_TitleImg" [src]=obj.Storage.TitleImg>
         </div>
         <div class="contactItem_Detail_Box">
           <div>
-            <span class="contactItem_titleName">{{obj.TitleName}}</span>
+            <span class="contactItem_titleName">{{obj.Storage.TitleName}}</span>
           </div>
           <div>
-            <span class="contactItem_status">{{obj.Status}}</span>
+            <span class="contactItem_status">{{obj.Storage.Status}}</span>
           </div>
         </div>
       </div>
+    </div>
+    <div id="openCreateMenu">
+      <img src="assets/imgs/plus-math-100.png">
     </div>
   </div>
   <app-message-region></app-message-region>
 </div>
 <app-menu-source></app-menu-source>
+<app-create-storage-menu></app-create-storage-menu>

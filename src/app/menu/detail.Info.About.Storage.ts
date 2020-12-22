@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {StorageModel} from '../models/StorageModel';
+import {ChatHub} from '../services/app.service.signalR';
+import {ChatModel} from '../models/ChatModel';
 
 @Component({
   selector: 'app-detail-info-storage',
@@ -8,9 +9,7 @@ import {StorageModel} from '../models/StorageModel';
 
 export class DetailInfoAboutStorageComponent{
   IsVisible = false;
-  storage: StorageModel = new StorageModel();
-  constructor() {
-    this.storage.TitleName = 'StorageName';
-    this.storage.Status = 'Status';
+  getSelectChat(): ChatModel{
+    return ChatHub.selectChat;
   }
 }
